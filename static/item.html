@@ -7,7 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Item</title>
     <script>
-        alert("Hello World!");
+        let searchParams = new URLSearchParams(window.location.search);
+        let name = searchParams.get("name");
+        let price = searchParams.get("price");
+        let src = searchParams.get("src");
+
+        alert("Name: " + name + "\nPrice: $" + price + "\nsrc: " + src);
     </script>
     <style>
         .header {

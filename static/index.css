@@ -43,6 +43,7 @@
 
 .products{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -59,6 +60,12 @@
 }
 
 .item img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
+}
+
+.product-wrapper{
+    height: 100%;
+    width: 650px;
+    margin: auto;
 }
