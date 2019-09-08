@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/erkkisula/rakendusteprogrammeerimine/issues"
   },
-  "homepage": "https://github.com/erkkisula/rakendusteprogrammeerimine#readme"
+  "homepage": "https://github.com/erkkisula/rakendusteprogrammeerimine#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
