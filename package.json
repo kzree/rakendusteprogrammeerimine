@@ -21,5 +21,8 @@
   "homepage": "https://github.com/erkkisula/rakendusteprogrammeerimine#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0"
   }
 }

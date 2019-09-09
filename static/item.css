@@ -1,0 +1,60 @@
+.header {
+    margin-bottom: 15px;
+    background: blueviolet;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 80px;
+}
+
+.buttons {
+    width: 200px;
+    display: flex;
+}
+
+.buttons button {
+    background-color: white;
+    color: black;
+    height: 30px;
+    width: 100px;
+    border: black;
+    padding: 5px 5px;
+}
+
+.buttons button:hover {
+    background-color: green;
+    color: white;
+}
+
+.divider {
+    width: 5px;
+    height: auto;
+    display: flex;
+}
+
+.product{
+    background-color: blueviolet;
+    padding: 5px;
+    width: 500px;
+}
+
+.product img{
+    width: 500px;
+    height: 500px;
+}
+
+.item_info{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper{
+    height: 100%;
+    width: 700px;
+}
