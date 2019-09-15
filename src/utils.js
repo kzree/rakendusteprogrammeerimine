@@ -11,8 +11,8 @@ function createItemElement(item) {
     let priceElement = document.createElement("div");
     priceElement.className = "item-price";
 
-    linkElement.href = './item.html?name=' + item.title +'&price=' + item.price +'&src=./img/picture_missing.png'
-    imageElement.src = "./img/picture_missing.png";
+    linkElement.href = './item.html?name=' + item.title +'&price=' + item.price +'&src=' + item.imgSrc;
+    imageElement.src = item.imgSrc;
     priceElement.innerText = item.price;
     nameElement.innerText = item.title;
     product.append(linkElement);

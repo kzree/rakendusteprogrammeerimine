@@ -50,8 +50,10 @@
 }
 
 .item{
-    background-color: blueviolet;
-    padding: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: blueviolet;
+    background-color: white;
     width: 200px;
 }
 
