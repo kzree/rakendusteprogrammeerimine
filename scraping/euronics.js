@@ -8,25 +8,21 @@
     const arr = [];
 
     Array.from(items).forEach(item =>{
-        const imgs = item.getElementsByClassName(imageClass);
+        const imgs = item.getElementsByClassName(imageClass)[0];
+        console.log(imgs);
+        console.log(item.getElementsByClassName(titleClass)[0]);
         if(imgs.length === 0) return;
-        const img = imgs[0];
-
-        console.log("lol");
-        const src = img.dataset.src;
-        console.log(src);
-
-        //if(!src) return;
+        const imageSource = item.getElementsByClassName(imageClass)[0].dataset.src;
 
         const title = item.getElementsByClassName(titleClass)[0].textContent;
         const price = item.getElementsByClassName(priceClass)[0].textContent;
-        console.log("title", title);
+        console.log(title);
         
         arr.push({
-            imgSrc: src,
+            imgSrc: imageSource,
             title,
             price,
-            category: document.title.split("|")[0].trim(),
+            category: document.title.trim(),
         })
     });
 
