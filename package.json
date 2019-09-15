@@ -4,7 +4,9 @@
   "description": "Simple store",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "build": "webpack",
+    "start": "node app.js",
+    "start:dev": "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,9 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^6.3.0"
+    "copy-webpack-plugin": "^5.0.4",
+    "eslint": "^6.3.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
   }
 }

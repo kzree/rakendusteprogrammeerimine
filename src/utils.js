@@ -23,3 +23,7 @@ function createItemElement(item) {
 
     return product;
 }
+
+module.exports = {
+    createItemElement
+}
