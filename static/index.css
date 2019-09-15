@@ -50,10 +50,10 @@
 .item{
     background-color: blueviolet;
     padding: 5px;
+    width: 200px;
 }
 
 .item-info{
-    display: flex;
     justify-content: space-between;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -68,4 +68,11 @@
     height: 100%;
     width: 650px;
     margin: auto;
+}
+
+.info-bar{
+    width: 650px;
+    margin: auto;
+    height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
