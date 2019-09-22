@@ -4,10 +4,6 @@ import ReactDOM from "react-dom";
 const root = document.getElementById("app");
 
 ReactDOM.render(
-    React.createElement(
-        "button",
-        {},
-        "I am a buton, Hello World!"
-    ),
+    <button>I am button</button>,
     root
 )
