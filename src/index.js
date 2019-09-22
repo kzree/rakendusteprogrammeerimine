@@ -1,11 +1,13 @@
-//const itemList = require("./itemList.js");
-//const item = require("./item.js");
-import itemList from "./itemList.js";
-import item from "./item.js";
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log("Ready");
+const root = document.getElementById("app");
 
-window.addEventListener("load", () => {
-    itemList.setup();
-    item.setup();
-})
+ReactDOM.render(
+    React.createElement(
+        "button",
+        {},
+        "I am a buton, Hello World!"
+    ),
+    root
+)

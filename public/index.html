@@ -6,62 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="index.css">
-    <script src="./bundle.js"></script>
     <title>Web Store</title>
 </head>
 
 <body>
-    <div class="header">
-        <a href="index.html">
-            <img class="logo" src="./img/logo.png" alt="Logo">
-        </a>
-        <div class="buttons">
-            <button>Login/Signup</button>
-            <div class="divider"></div>
-            <button>Cart</button>
-        </div>
-    </div>
-
-    <div class="info-bar">
-        <label for="cat-select">Kategooria: </label>
-        <select name="Category" class="cat-select" id="cat-select">
-            <option value="phones">Telefonid</option>
-            <option value="laptops">Sülearvutid</option>
-        </select>
-    </div>
-
-    <div class="product-wrapper">
-        <div class="products" id="products">
-            <div class="item">
-                <a href="item.html?name=Black t-shirt&price=5&src=./img/b_tshirt.jpg">
-                    <img src="./img/b_tshirt.jpg" alt="Toode">
-                </a>
-                <div class="item-info">
-                    <div class="item-name">Black t-shirt</div>
-                    <div class="item-price">$5</div>
-                </div>
-            </div>
-            <div class="item">
-                <a href="item.html?name=Red t-shirt&price=5&src=./img/r_tshirt.jpg">
-                    <img src="./img/r_tshirt.jpg" alt="Toode">
-                </a>
-                <div class="item-info">
-                    <div class="item-name">Red t-shirt</div>
-                    <div class="item-price">$5</div>
-                </div>
-            </div>
-            <div class="item">
-                <a href="item.html?name=Red hoodie&price=40&src=./img/r_hoodie.jpg">
-                    <img src="./img/r_hoodie.jpg" alt="Toode">
-                </a>
-                <div class="item-info">
-                    <div class="item-name">Red hoodie</div>
-                    <div class="item-price">$40</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    <div id="app"></div>
+    <script src="./bundle.js"></script>
 </body>
 
 </html>
