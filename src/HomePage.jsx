@@ -13,19 +13,22 @@ class HomePage extends React.PureComponent {
         this.state = {
             items: phones,
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event){
+        console.log(event.target.value);
         switch(event.target.value){
             case "phones":
                 this.setState({
                     items: phones,
-                })
+                });
                 break;
             case "laptops":
                 this.setState({
                     items: laptops,
-                })
+                });
                 break;
         }
     }
@@ -35,10 +38,12 @@ class HomePage extends React.PureComponent {
             <>
                 <Header />
                 
-                <select onChange={this.handleChange}>
-                    <option value="phones">Telefonid</option>
-                    <option value="laptops">Laptopid</option>
-                </select>
+                <div className="info-bar">
+                    <select onChange={this.handleChange}>
+                        <option value="phones">Telefonid</option>
+                        <option value="laptops">Laptopid</option>
+                    </select>
+                </div>
 
                 <ItemList items={this.state.items} />
             </>
