@@ -1,5 +1,7 @@
-const itemList = require("./itemList.js");
-const item = require("./item.js");
+//const itemList = require("./itemList.js");
+//const item = require("./item.js");
+import itemList from "./itemList.js";
+import item from "./item.js";
 
 console.log("Ready");
 
