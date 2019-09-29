@@ -23,7 +23,7 @@ const ItemList = (props) => {
     )
 };
 
-ItemList.PropTypes = {
+ItemList.propTypes = {
     items: PropTypes.array
 };
 
@@ -43,7 +43,7 @@ const Item = (props) => {
 
 }
 
-Item.PropTypes = {
+Item.propTypes = {
     imgSrc: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
