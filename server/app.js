@@ -22,10 +22,8 @@ app.get('/items/*', (req, res) => {
 
 app.use(express.static('dist'));
 
-//app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
 //Heroku
-app.listen(process.env.PORT || PORT, ()=> {
+app.listen(PORT, ()=> {
     console.log("Server started", PORT);
 });
 
