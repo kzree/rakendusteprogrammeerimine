@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 
@@ -22,6 +23,11 @@ const ItemList = (props) => {
     )
 };
 
+ItemList.PropTypes = {
+    items: PropTypes.array
+};
+
+
 const Item = (props) => {
     return (
         <Link to={"/item"}>
@@ -37,4 +43,9 @@ const Item = (props) => {
 
 }
 
+Item.PropTypes = {
+    imgSrc: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+}
 export default ItemList;
