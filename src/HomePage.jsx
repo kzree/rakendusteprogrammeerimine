@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import Header from "./Header.jsx";
 import ItemList from "./ItemList.jsx";
 import css from "./index.css";
+import checkboxCss from "./Checkbox.css";
+import Checkbox from "./Checkbox.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends React.PureComponent {
@@ -13,15 +15,21 @@ class HomePage extends React.PureComponent {
         this.state = {
             items: [],
             selectedCategory: "phones",
+            selectedCategories: ["phones"],
+            allCategories: ["phones", "laptops"],
+            filterBox: {display: 'none'},
+            filterBoxVisible: false
         }
         this.handleDropdown = this.handleDropdown.bind(this);
+        this.isSelected = this.isSelected.bind(this);
+        this.toggleFilterBox = this.toggleFilterBox.bind(this);
     }
 
     componentDidMount() {
         this.fetchItems();
     }
 
-    fetchItems (){
+    fetchItems() {
         fetch("/api/items")
             .then(res => {
                 console.log("res", res);
@@ -40,13 +48,49 @@ class HomePage extends React.PureComponent {
 
     handleDropdown(event) {
         console.log(event.target.value);
-        this.setState({
-            selectedCategory: event.target.value
-        });
+        if (this.isSelected(event.target.name)) {
+            const clone = this.state.selectedCategories.slice();
+            const index = this.state.selectedCategories.indexOf(event.target.name);
+            clone.splice(index, 1);
+            this.setState({
+                selectedCategories: clone
+            });
+        }
+        else {
+            this.setState({
+                selectedCategories: this.state.selectedCategories.concat([event.target.name])
+            });
+        }
     }
 
     getVisibleItems() {
-        return this.state.items.filter(item => item.category === this.state.selectedCategory);
+        return this.state.items.filter(item => this.isSelected(item.category));
+    }
+
+    isSelected(name){
+        return this.state.selectedCategories.indexOf(name) >=0;
+    }
+
+    toggleFilterBox(){
+        console.log("he");
+        console.log(this.state.filterBox);
+        if(this.state.filterBoxVisible === false){
+            console.log("he2");
+            this.setState({
+                filterBox: {display: 'flex'}
+            });
+            this.setState({
+                filterBoxVisible: true
+            });
+        }else if(this.state.filterBoxVisible === true){
+            console.log("he3");
+            this.setState({
+                filterBox: {display: 'none'}
+            });
+            this.setState({
+                filterBoxVisible: false
+            });
+        }
     }
 
     render() {
@@ -54,13 +98,26 @@ class HomePage extends React.PureComponent {
             <>
                 <Header />
 
+                
                 <div className="info-bar">
                     <div className="info-bar-buttons">
-                        {/* <select onChange={this.handleDropdown}>
-                            <option value="phones">Telefonid</option>
-                            <option value="laptops">Laptopid</option>
-                        </select> */}
-                        <button className="info-bar-filters">Filters</button>
+                        <button className="info-bar-filters" onClick={this.toggleFilterBox}>Filters</button>
+                    </div>
+                </div>
+                <div className="filter-box" style={this.state.filterBox}>
+                    <div className="filter-box-checkboxes">
+                        {
+                            this.state.allCategories.map(categoryName => {
+                                return (
+                                    <Checkbox
+                                        key={categoryName}
+                                        name={categoryName}
+                                        onChange={this.handleDropdown}
+                                        checked={this.isSelected(categoryName)}
+                                    />
+                                );
+                            })
+                        }
                     </div>
                 </div>
 
