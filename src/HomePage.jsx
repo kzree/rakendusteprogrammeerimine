@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./Header.jsx";
 import ItemList from "./ItemList.jsx";
+import css from "./index.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends React.PureComponent {
@@ -54,10 +55,13 @@ class HomePage extends React.PureComponent {
                 <Header />
 
                 <div className="info-bar">
-                    <select onChange={this.handleDropdown}>
-                        <option value="phones">Telefonid</option>
-                        <option value="laptops">Laptopid</option>
-                    </select>
+                    <div className="info-bar-buttons">
+                        {/* <select onChange={this.handleDropdown}>
+                            <option value="phones">Telefonid</option>
+                            <option value="laptops">Laptopid</option>
+                        </select> */}
+                        <button className="info-bar-filters">Filters</button>
+                    </div>
                 </div>
 
                 <ItemList items={this.getVisibleItems()} />
