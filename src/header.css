@@ -1,0 +1,44 @@
+
+.header{
+    margin-bottom: 15px;
+    background: blueviolet;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+
+.logo{
+    width: 80px;
+}
+
+.header_icon{
+    width: 60px;
+}
+
+.buttons{
+    width: 200px;
+    display: flex;
+}
+
+.buttons button{
+    background-color: white;
+    color: black;
+    height: 30px;
+    width: 100px;
+    border: black;
+    padding: 5px 5px;
+}
+
+.buttons button:hover{
+    background-color: green;
+    color: white;
+}
+
+.divider{
+    width:15px;
+    height:auto;
+    display:flex;
+}

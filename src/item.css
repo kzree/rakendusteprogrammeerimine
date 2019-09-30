@@ -1,0 +1,23 @@
+
+.product{
+    background-color: blueviolet;
+    padding: 5px;
+    width: 500px;
+}
+
+.product img{
+    width: 500px;
+    height: 500px;
+}
+
+.item_info{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper{
+    height: 100%;
+    width: 700px;
+}

@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header.jsx";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import css from "./item.css";
 
 class ItemPage extends React.PureComponent {
     constructor(props){
