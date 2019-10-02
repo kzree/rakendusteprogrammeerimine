@@ -18,11 +18,13 @@ class HomePage extends React.PureComponent {
             selectedCategories: ["phones"],
             allCategories: ["phones", "laptops"],
             filterBox: {display: 'none'},
-            filterBoxVisible: false
+            filterBoxVisible: false,
+            limit: 36
         }
         this.handleDropdown = this.handleDropdown.bind(this);
         this.isSelected = this.isSelected.bind(this);
         this.toggleFilterBox = this.toggleFilterBox.bind(this);
+        this.loadMore = this.loadMore.bind(this);
     }
 
     componentDidMount() {
@@ -55,12 +57,17 @@ class HomePage extends React.PureComponent {
             this.setState({
                 selectedCategories: clone
             });
+
         }
         else {
             this.setState({
                 selectedCategories: this.state.selectedCategories.concat([event.target.name])
             });
         }
+
+        this.setState({
+            limit: 36
+        })
     }
 
     getVisibleItems() {
@@ -69,6 +76,14 @@ class HomePage extends React.PureComponent {
 
     isSelected(name){
         return this.state.selectedCategories.indexOf(name) >=0;
+    }
+
+    loadMore(){
+        console.log(this.state.limit);
+        this.setState({
+            limit: this.state.limit + 36
+        });
+        
     }
 
     toggleFilterBox(){
@@ -121,7 +136,10 @@ class HomePage extends React.PureComponent {
                     </div>
                 </div>
 
-                <ItemList items={this.getVisibleItems()} />
+                <ItemList items={this.getVisibleItems()} limit={this.state.limit}/>
+                <div className="load-more-button">
+                    <button onClick={this.loadMore} >Load more</button>
+                </div>
             </>
         )
 

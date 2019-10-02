@@ -10,13 +10,15 @@ const ItemList = (props) => {
             <div className={"products"}>
                 {
                     props.items.map(function (item, i) {
-                        return <Item
-                            key={i}
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            imgSrc={item.imgSrc}
-                        />
+                        if(i < props.limit){
+                            return <Item
+                                key={i}
+                                id={item.id}
+                                title={item.title}
+                                price={item.price}
+                                imgSrc={item.imgSrc}
+                            />
+                        }
                     })
                 }
             </div>
@@ -25,7 +27,8 @@ const ItemList = (props) => {
 };
 
 ItemList.propTypes = {
-    items: PropTypes.array
+    items: PropTypes.array,
+    limit: PropTypes.number
 };
 
 
