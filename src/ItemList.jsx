@@ -39,7 +39,7 @@ const Item = (props) => {
                 <img src={props.imgSrc} />
                 <div className="item-info">
                     <div className="item-name">{props.title}</div>
-                    <div className="item-price">{props.price}</div>
+                    <div className="item-price">{props.price}€</div>
                 </div>
             </div>
         </Link>

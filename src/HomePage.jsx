@@ -110,10 +110,8 @@ class HomePage extends React.PureComponent {
     }
 
     toggleFilterBox(){
-        console.log("he");
         console.log(this.state.filterBox);
         if(this.state.filterBoxVisible === false){
-            console.log("he2");
             this.setState({
                 filterBox: {display: 'flex'}
             });
@@ -121,7 +119,6 @@ class HomePage extends React.PureComponent {
                 filterBoxVisible: true
             });
         }else if(this.state.filterBoxVisible === true){
-            console.log("he3");
             this.setState({
                 filterBox: {display: 'none'}
             });
@@ -132,6 +129,7 @@ class HomePage extends React.PureComponent {
     }
 
     render() {
+        const items = this.getVisibleItems();
         return (
             <>
                 <Header />
@@ -146,7 +144,7 @@ class HomePage extends React.PureComponent {
                             direction={this.state.sortDirection}
                             onChange={this.handleSortDropdown}
                         />
-                    </div>
+                    </div>                    
                 </div>
                 <div className="filter-box" style={this.state.filterBox}>
                     <div className="filter-box-checkboxes">
@@ -163,6 +161,10 @@ class HomePage extends React.PureComponent {
                             })
                         }
                     </div>
+                </div>
+
+                <div className="info-bar-items-shown">
+                    Showing {this.state.limit} out of {items.length}
                 </div>
 
                 <ItemList items={this.getVisibleItems()} limit={this.state.limit}/>

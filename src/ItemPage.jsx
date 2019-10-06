@@ -40,7 +40,7 @@ class ItemPage extends React.PureComponent {
                         <div className="product">
                             <div className="item-item-info-pic">
                                 <img className="item-item-image" src={this.state.imgSrc}></img>
-                                <div className="item-item-price">{this.state.price}</div>
+                                <div className="item-item-price">{this.state.price}€</div>
                             </div>
                             <div className="item-item-info">
                                 <div className="item-item-name">{this.state.title}</div>
