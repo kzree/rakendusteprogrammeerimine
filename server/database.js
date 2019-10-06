@@ -1270,17 +1270,25 @@ function getItems(){
         items.push({
             ...phone,
             id: "phones_" + index,
-            category: "phones"
+            category: "phones",
+            price: cleanPrice(phone.price)
         })
     });
     laptops.forEach( (laptop, index)=>{
         items.push({
             ...laptop,
             id: "laptops_" + index,
-            category: "laptops"
+            category: "laptops",
+            price: cleanPrice(laptop.price)
         })
     });
     return items;
+}
+
+function cleanPrice(price){
+    const newPrice = price.split("€");
+    console.log(newPrice[0].replace("\n", ""));
+    return newPrice[0].replace("\n", "");
 }
 
 function getItem(itemId){

@@ -11,17 +11,17 @@ const Header = () => {
                 <img className="logo" src="/img/logo.png" alt="Logo"></img>
             </Link>
             <div className="buttons">
-                <div className="header-icon">
-                    <Link to={"/"}>
+                <Link to={"/"}>
+                    <div className="header-icon">
                         <img src = {userIcon} className = "header-icon-img" alt="user_icon"/>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
                 <div className="divider"></div>
-                <div className="header-icon">
-                    <Link to={"/"}>                
-                        <img src={cartIcon} className = "header-icon-img" alt="cart_icon"/>
-                    </Link>
-                </div>
+                <Link to={"/"}>                
+                    <div className="header-icon">
+                            <img src={cartIcon} className = "header-icon-img" alt="cart_icon"/>
+                    </div>
+                </Link>
             </div>
         </div>
     )

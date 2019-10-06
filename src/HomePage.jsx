@@ -5,7 +5,9 @@ import Header from "./Header.jsx";
 import ItemList from "./ItemList.jsx";
 import css from "./index.css";
 import checkboxCss from "./Checkbox.css";
+import dropdownCss from "./Dropdown.css";
 import Checkbox from "./Checkbox.jsx";
+import SortDropdown from "./SortDropdown.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends React.PureComponent {
@@ -19,12 +21,14 @@ class HomePage extends React.PureComponent {
             allCategories: ["phones", "laptops"],
             filterBox: {display: 'none'},
             filterBoxVisible: false,
-            limit: 36
+            limit: 36,
+            sortDirection: -1
         }
         this.handleDropdown = this.handleDropdown.bind(this);
         this.isSelected = this.isSelected.bind(this);
         this.toggleFilterBox = this.toggleFilterBox.bind(this);
         this.loadMore = this.loadMore.bind(this);
+        this.handleSortDropdown = this.handleSortDropdown.bind(this);
     }
 
     componentDidMount() {
@@ -70,8 +74,28 @@ class HomePage extends React.PureComponent {
         })
     }
 
+    handleSortDropdown(event) {
+        console.log(event.target.value);
+        this.setState({
+            sortDirection: parseInt(event.target.value)
+        })
+
+        this.setState({
+            limit: 36
+        })
+    }
+
     getVisibleItems() {
-        return this.state.items.filter(item => this.isSelected(item.category));
+
+        return this.state.items
+            .filter(item => this.isSelected(item.category))
+            .sort((a, b) => {
+
+                switch (this.state.sortDirection) {
+                    case -1: return b.price - a.price;
+                    case 1: return a.price - b.price;
+                }
+            });
     }
 
     isSelected(name){
@@ -118,6 +142,12 @@ class HomePage extends React.PureComponent {
                     <div className="info-bar-buttons">
                         <button className="info-bar-filters" onClick={this.toggleFilterBox}>Filters</button>
                     </div>
+                    <div className="info-bar-sorting">
+                        <SortDropdown 
+                            direction={this.state.sortDirection}
+                            onChange={this.handleSortDropdown}
+                        />
+                    </div>
                 </div>
                 <div className="filter-box" style={this.state.filterBox}>
                     <div className="filter-box-checkboxes">
@@ -140,6 +170,7 @@ class HomePage extends React.PureComponent {
                 <div className="load-more-button">
                     <button onClick={this.loadMore} >Load more</button>
                 </div>
+                <div className="products-contact-info"></div>
             </>
         )
 
