@@ -5,7 +5,6 @@ import Header from "./Header.jsx";
 import ItemList from "./ItemList.jsx";
 import css from "./index.css";
 import checkboxCss from "./Checkbox.css";
-import dropdownCss from "./Dropdown.css";
 import Checkbox from "./Checkbox.jsx";
 import SortDropdown from "./SortDropdown.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";

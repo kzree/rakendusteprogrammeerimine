@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
+import "./Dropdown.css";
+
 
 const SortDropdown = ({direction, onChange}) => {
     return(
-        <div>
-            <select value={direction} onChange = {onChange}>
+        <div className = "box">
+            <select value={direction} onChange = {onChange} >
                 <option value={-1}>Price high to low</option>
                 <option value={1}>Price low to high</option>
             </select>
