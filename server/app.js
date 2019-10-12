@@ -1,8 +1,20 @@
 const express = require('express')
-const app = express()
+const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3000;
 const DB = require("./database.js");
+const mongoose = require("mongoose");
+require('dotenv').config();
+
+const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-fwj6k.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
+
+mongoose.connect(DB_URL)
+    .then(() => {
+        console.log("Database access success!");
+    })
+    .catch( err =>{
+        console.log("Error: ", err);
+    });
 
 app.get("/api/items", (req, res)=>{
     res.json(DB.getItems());
