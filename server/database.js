@@ -1269,7 +1269,7 @@ function getItems(){
     phones.forEach( (phone, index)=>{
         items.push({
             ...phone,
-            id: "phones_" + index,
+            //id: "phones_" + index,
             category: "phones",
             price: cleanPrice(phone.price)
         })
@@ -1277,7 +1277,7 @@ function getItems(){
     laptops.forEach( (laptop, index)=>{
         items.push({
             ...laptop,
-            id: "laptops_" + index,
+            //id: "laptops_" + index,
             category: "laptops",
             price: cleanPrice(laptop.price)
         })
@@ -1287,7 +1287,6 @@ function getItems(){
 
 function cleanPrice(price){
     const newPrice = price.split("€");
-    console.log(newPrice[0].replace("\n", ""));
     return newPrice[0].replace("\n", "");
 }
 
