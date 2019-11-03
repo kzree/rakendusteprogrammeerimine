@@ -7,6 +7,9 @@
 }
 
 .form {
+    border-top: blueviolet;
+    border-top-style: solid;
+    border-top-width: 5px;
     position: relative;
     z-index: 1;
     background: #FFFFFF;
