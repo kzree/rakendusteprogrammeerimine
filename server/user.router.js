@@ -12,20 +12,24 @@ router.get("/api/users", (req, res) => {
 });
 
 router.post("/api/users/signin", (req, res) =>{
-    User.findOne({email: req.body.email},(err, doc) => {
-        if(err) return handleError(err, res);
-        res.send(doc);
+    User.signin(req.body)
+    .then( user => {
+        res.json(user);
     })
+    .catch( err => {
+        res.send(500);
+    });
 })
 //Create user
 router.post("/api/users/signup", (req, res) => {
-    const user = new User(req.body);
+    User.signup(req.body)
+        .then( user =>{
+            res.status(200).json(user);
+        })
+        .catch( err => {
+            return handleError(err, res);
+        })
 
-    user.save((err) =>{
-        if(err) return handleError(err, res);
-        console.log("Succ");
-        res.status(200).json(user);
-    })
 })
 
 router.delete("/api/users/purge", (req, res)=>{

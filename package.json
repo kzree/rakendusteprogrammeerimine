@@ -23,6 +23,7 @@
   "homepage": "https://github.com/erkkisula/rakendusteprogrammeerimine#readme",
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
