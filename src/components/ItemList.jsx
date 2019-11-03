@@ -13,7 +13,7 @@ const ItemList = (props) => {
                         if(i < props.limit){
                             return <Item
                                 key={i}
-                                id={item.id}
+                                id={item._id}
                                 title={item.title}
                                 price={item.price}
                                 imgSrc={item.imgSrc}
@@ -51,6 +51,6 @@ Item.propTypes = {
     id: PropTypes.string.isRequired,
     imgSrc: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
 }
 export default ItemList;

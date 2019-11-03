@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import Header from "./Header.jsx";
+import Header from "../components/Header.jsx";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import css from "./item.css";
@@ -34,7 +34,6 @@ class ItemPage extends React.PureComponent {
     render() {
         return (
             <>
-                <Header />
                 <div>
                     <div className="wrapper">
                         <div className="product">

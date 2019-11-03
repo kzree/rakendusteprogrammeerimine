@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "./Header.jsx";
-import ItemList from "./ItemList.jsx";
+import ItemList from "../components/ItemList.jsx";
 import css from "./index.css";
-import checkboxCss from "./Checkbox.css";
-import Checkbox from "./Checkbox.jsx";
-import SortDropdown from "./SortDropdown.jsx";
+import checkboxCss from "../components/Checkbox.css";
+import Checkbox from "../components/Checkbox.jsx";
+import SortDropdown from "../components/SortDropdown.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends React.PureComponent {
@@ -131,10 +130,7 @@ class HomePage extends React.PureComponent {
     render() {
         const items = this.getVisibleItems();
         return (
-            <>
-                <Header />
-
-                
+            <>  
                 <div className="info-bar">
                     <div className="info-bar-buttons">
                         <button className="info-bar-filters" onClick={this.toggleFilterBox}>Filters</button>

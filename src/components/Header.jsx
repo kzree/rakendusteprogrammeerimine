@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
-import { userIcon, cartIcon } from "./Icons";
+import { userIcon, cartIcon } from "../Icons";
 import css from "./header.css";
 
 const Header = () => {
