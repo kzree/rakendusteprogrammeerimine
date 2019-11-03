@@ -17,7 +17,7 @@ router.post("/api/users/signin", (req, res) =>{
         res.json(user);
     })
     .catch( err => {
-        res.send(500);
+        handleError(err, res);
     });
 })
 //Create user
