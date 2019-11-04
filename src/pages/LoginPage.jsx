@@ -25,7 +25,7 @@ class LoginPage extends React.PureComponent {
     handleSubmit(event) {
         event.preventDefault();
         console.log("Submit", this.state);
-        fetch("/api/users/signin", {
+        fetch("/api/v1/auth/signin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

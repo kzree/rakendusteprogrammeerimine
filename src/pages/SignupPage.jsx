@@ -25,9 +25,24 @@ class SignupPage extends React.PureComponent {
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit(event){ 
         event.preventDefault();
-        console.log("Submit", this.state);
+        fetch("/api/v1/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(this.state),
+        })
+        .then( res => res.json())
+        .then( data=>{
+            console.log("data", data);
+            this.props.history.push("/login");
+        })
+        .catch ( err => {
+            console.log("Error", err);
+        });  
     }
     render(){
         return (

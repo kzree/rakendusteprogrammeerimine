@@ -30,7 +30,11 @@ userSchema.statics.signin = function({email, password}){
            bcrypt.compare(password, userDoc.hash, function(err, result) {
                if(err) return reject(err);
                if(!result) return reject("Invalid password");
-               resolve(result);
+               resolve({
+                    email: userDoc.email,
+                    createdAt: userDoc.createdAt,
+                    _id: userDoc._id,
+               });
            });
        }); 
     });    
