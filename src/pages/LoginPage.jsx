@@ -2,8 +2,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./form.css";
+import PropTypes from "prop-types";
 
 class LoginPage extends React.PureComponent {
+
+    static propTypes = {
+        history: PropTypes.object.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,8 +38,10 @@ class LoginPage extends React.PureComponent {
             },
             body: JSON.stringify(this.state),
         })
-        .then( res => {
-            console.log("response", res);
+        .then( res=> res.json())
+        .then( ({token, user}) => {
+            console.log("response", token, user);
+            this.props.history.push(`/users/${user._id}`);
         })
         .catch( err => {
             console.log("Error", err);

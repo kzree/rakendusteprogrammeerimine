@@ -32,7 +32,9 @@ userSchema.statics.signin = function({email, password}){
                if(!result) return reject("Invalid password");
                resolve({
                     email: userDoc.email,
-                    createdAt: userDoc.createdAt,
+                    createdAt: userDoc.created_at,
+                    firstname: userDoc.firstname,
+                    lastname: userDoc.lastname,
                     _id: userDoc._id,
                });
            });
