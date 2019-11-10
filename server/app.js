@@ -9,7 +9,10 @@ const authRouter = require("./auth.router.js");
 const DB = require("./database.js");
 const Item = require("./item.model.js");
 const bodyParser = require("body-parser");
-require('dotenv').config();
+
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
 
 const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-fwj6k.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
 
