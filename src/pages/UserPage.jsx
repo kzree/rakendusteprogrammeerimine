@@ -1,10 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class UserPage extends React.PureComponent {
-    render(){
+
+    static propTypes = {
+        user: PropTypes.object.isRequired,
+    };
+
+    render() {
         return (
             <div>
-                heeeeeeeeeee
+                Hello mr {this.props.user.lastname}
             </div>
         );
     }

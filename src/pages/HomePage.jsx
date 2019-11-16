@@ -22,7 +22,7 @@ class HomePage extends React.PureComponent {
             limit: 36,
             sortDirection: -1
         }
-        this.handleDropdown = this.handleDropdown.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
         this.isSelected = this.isSelected.bind(this);
         this.toggleFilterBox = this.toggleFilterBox.bind(this);
         this.loadMore = this.loadMore.bind(this);
@@ -50,8 +50,7 @@ class HomePage extends React.PureComponent {
             });
     }
 
-    handleDropdown(event) {
-        console.log(event.target.value);
+    handleSelect(event) {
         if (this.isSelected(event.target.name)) {
             const clone = this.state.selectedCategories.slice();
             const index = this.state.selectedCategories.indexOf(event.target.name);
@@ -150,7 +149,7 @@ class HomePage extends React.PureComponent {
                                     <Checkbox
                                         key={categoryName}
                                         name={categoryName}
-                                        onChange={this.handleDropdown}
+                                        onChange={this.handleSelect}
                                         checked={this.isSelected(categoryName)}
                                     />
                                 );

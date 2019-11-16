@@ -41,6 +41,7 @@ class LoginPage extends React.PureComponent {
         .then( res=> res.json())
         .then( ({token, user}) => {
             console.log("response", token, user);
+            this.props.onLogin({token, user});
             this.props.history.push(`/users/${user._id}`);
         })
         .catch( err => {
