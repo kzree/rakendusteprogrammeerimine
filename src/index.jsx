@@ -9,6 +9,9 @@ import UserPage from "./pages/UserPage.jsx";
 import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import store from "./store.js";
+
+console.log(store);
 
 const defaultAuth = {
 	token: null,
