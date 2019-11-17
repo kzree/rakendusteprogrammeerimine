@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import CartPage from "./pages/CartPage.jsx";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import store from "./store.js";
 
@@ -53,6 +54,7 @@ class App extends React.Component {
 						<Route path="/signup" exact component={SignupPage} />
 						<Route path="/users/:userId" exact component={UserPage}/>
 						<Route path="/items/:itemId" exact component={ItemPage} />
+						<Route path="/cart" exact component = {CartPage}/>
 						<Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>

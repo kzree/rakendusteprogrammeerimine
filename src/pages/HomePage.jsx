@@ -6,6 +6,7 @@ import css from "./index.css";
 import checkboxCss from "../components/Checkbox.css";
 import Checkbox from "../components/Checkbox.jsx";
 import SortDropdown from "../components/SortDropdown.jsx";
+import {getItems} from "../actions/itemsActions.js";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends React.PureComponent {
@@ -34,11 +35,7 @@ class HomePage extends React.PureComponent {
     }
 
     fetchItems() {
-        fetch("/api/v1/items")
-            .then(res => {
-                console.log("res", res);
-                return res.json();
-            })
+        getItems()
             .then(items => {
                 console.log("items", items);
                 this.setState({

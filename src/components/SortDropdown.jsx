@@ -6,7 +6,7 @@ import "./Dropdown.css";
 
 const SortDropdown = ({direction, onChange}) => {
     return(
-        <div className = "box">
+        <div className = "dropbox">
             <select value={direction} onChange = {onChange} >
                 <option value={-1}>Price high to low</option>
                 <option value={1}>Price low to high</option>

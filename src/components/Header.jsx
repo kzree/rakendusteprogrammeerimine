@@ -19,7 +19,7 @@ const Header = ({user}) => {
                     </div>
                 </Link>
                 <div className="divider"></div>
-                <Link to={"/"}>                
+                <Link to={"/cart"}>                
                     <div className="header-icon">
                             <img src={cartIcon} className = "header-icon-img" alt="cart_icon"/>
                     </div>
