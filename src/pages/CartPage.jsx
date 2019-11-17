@@ -52,10 +52,10 @@ const Table = ({rows}) => {
     return (
         <div className={"table"}>
             <div className={"row"}>
-                <div className={"cell"}>Toode</div>
-                <div className={"cell cell--grow"}>Nimetus</div>
-                <div className={"cell"}>Kategooria</div>
-                <div className={"cell cell--right"}>Summa</div>
+                <div className={"cell"}>Item</div>
+                <div className={"cell cell--grow"}>Name</div>
+                <div className={"cell"}>Category</div>
+                <div className={"cell cell--right"}>Price</div>
                 <div className={"cell cell--small"}></div>
             </div>
             {rows.map( (row) => <Row key={row._id} {...row} />)}
