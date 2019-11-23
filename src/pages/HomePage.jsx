@@ -2,19 +2,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ItemList from "../components/ItemList.jsx";
-import css from "./index.css";
-import checkboxCss from "../components/Checkbox.css";
+import "./index.css";
+import "../components/Checkbox.css";
 import Checkbox from "../components/Checkbox.jsx";
 import SortDropdown from "../components/SortDropdown.jsx";
-import {getItems} from "../actions/itemsActions.js";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ItemProps} from "./CartPage.jsx";
+import {getItems} from "../store/store.js";
 
 class HomePage extends React.PureComponent {
+
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired,
+        items: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired,
+    };
 
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
             selectedCategory: "phones",
             selectedCategories: ["phones"],
             allCategories: ["phones", "laptops"],
@@ -30,21 +37,8 @@ class HomePage extends React.PureComponent {
         this.handleSortDropdown = this.handleSortDropdown.bind(this);
     }
 
-    componentDidMount() {
-        this.fetchItems();
-    }
-
-    fetchItems() {
-        getItems()
-            .then(items => {
-                console.log("items", items);
-                this.setState({
-                    items
-                });
-            })
-            .catch(err => {
-                console.log("err", err);
-            });
+    componentDidMount(){
+        this.props.dispatch(getItems());
     }
 
     handleSelect(event) {
@@ -81,7 +75,7 @@ class HomePage extends React.PureComponent {
 
     getVisibleItems() {
 
-        return this.state.items
+        return this.props.items
             .filter(item => this.isSelected(item.category))
             .sort((a, b) => {
 
@@ -124,7 +118,7 @@ class HomePage extends React.PureComponent {
     }
 
     render() {
-        const items = this.getVisibleItems();
+        const visibleItems = this.getVisibleItems();
         return (
             <>  
                 <div className="info-bar">
@@ -156,10 +150,10 @@ class HomePage extends React.PureComponent {
                 </div>
 
                 <div className="info-bar-items-shown">
-                    Showing {this.state.limit} out of {items.length}
+                    Showing {this.state.limit} out of {visibleItems.length}
                 </div>
 
-                <ItemList items={this.getVisibleItems()} limit={this.state.limit}/>
+                <ItemList items={visibleItems} limit={this.state.limit}/>
                 <div className="load-more-button">
                     <button onClick={this.loadMore} >Load more</button>
                 </div>
@@ -170,4 +164,10 @@ class HomePage extends React.PureComponent {
     }
 }
 
-export default HomePage;
+const mapStateToProps = (store) => {
+    return {
+        items: store.items,
+    };
+};
+
+export default connect(mapStateToProps)(HomePage);
