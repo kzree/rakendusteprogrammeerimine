@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const itemRouter = require("./item.router.js");
 const userRouter = require("./user.router.js");
 const authRouter = require("./auth.router.js");
-const DB = require("./database.js");
 const Item = require("./item.model.js");
 const bodyParser = require("body-parser");
 
@@ -41,43 +40,8 @@ function listen(){
 mongoose.connect(DB_URL)
     .then(() => {
         console.log("Database access success!");
-        migrate();
         listen();
     })
     .catch( err =>{
         console.log("", err);
     });
-
-
-function migrate(){
-    Item.count({}, (err, countNr)=>{
-        if(err) throw err;
-        if(countNr > 0) {
-            console.log("Items already present, don't save!")
-            return;
-        }
-        saveAllItems();
-    })
-}
-
-function deleteAllItems(){
-    Item.deleteMany({}, (err, doc) => {
-        console.log('err', err, "doc", doc);
-    })
-}
-
-function saveAllItems(){
-    console.log("Migrate started");
-    const items = DB.getItems();
-    items.forEach(item => {
-        const document = new Item(item);
-        document.save( (err) => {
-            if(err){
-                console.log(err);
-                throw new Error ("Error while saving!");
-            }
-            console.log("Save success!");
-        })
-    })
-    console.log("items", items);
-}

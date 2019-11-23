@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { AuthContext } from "../index.jsx";
+import { AuthContext } from "../App.jsx";
 
 const authConsumer = (WrappedComponent) => {
     return class extends React.PureComponent{
