@@ -15,53 +15,27 @@ import { PersistGate } from "redux-persist/integration/react";
 
 const {store, persistor} = configureStore();
 
-const defaultAuth = {
-	token: null,
-	user: {
-		_id: null,
-		email: null,
-		firstname: null,
-		lastname: null,
-		createdAt: null,
-	},
-}
-export const AuthContext = React.createContext(defaultAuth);
 
 class App extends React.Component {
-	state = defaultAuth;
-	handleLogin = ({ token, user }) => {
-		this.setState({
-			user, token
-		});
-	};
 
 	render() {
 		return (
 			<Provider store={store}>
 				<PersistGate loading = {null} persistor={persistor}>
-					<AuthContext.Provider value={this.state}>
-						<BrowserRouter>
-							<Route path={"/"} component={Header} />
-							<Switch>
+					<BrowserRouter>
+						<Route path={"/"} component={Header} />
+						<Switch>
 
-								<Route path="/" exact component={HomePage} />
-								<Route
-									path="/login"
-									exact
-									render={(props) =>
-										<LoginPage
-											{...props}
-											onLogin={this.handleLogin}
-										/>}
-								/>
-								<Route path="/signup" exact component={SignupPage} />
-								<Route path="/users/:userId" exact component={UserPage} />
-								<Route path="/items/:itemId" exact component={ItemPage} />
-								<Route path="/cart" exact component={CartPage} />
-								<Route component={NotFound} />
-							</Switch>
-						</BrowserRouter>
-					</AuthContext.Provider>
+							<Route path="/" exact component={HomePage} />
+							<Route path="/login" exact component={LoginPage} />
+
+							<Route path="/signup" exact component={SignupPage} />
+							<Route path="/users/:userId" exact component={UserPage} />
+							<Route path="/items/:itemId" exact component={ItemPage} />
+							<Route path="/cart" exact component={CartPage} />
+							<Route component={NotFound} />
+						</Switch>
+					</BrowserRouter>
 				</PersistGate>
 			</Provider>
 		);

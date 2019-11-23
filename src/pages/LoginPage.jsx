@@ -3,11 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./form.css";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { userUpdate } from "../store/actions";
 
 class LoginPage extends React.PureComponent {
 
     static propTypes = {
         history: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -39,15 +42,17 @@ class LoginPage extends React.PureComponent {
             body: JSON.stringify(this.state),
         })
         .then( res=> res.json())
-        .then( ({token, user}) => {
-            console.log("response", token, user);
-            this.props.onLogin({token, user});
-            this.props.history.push(`/users/${user._id}`);
-        })
+        .then(this.handleSuccess)
         .catch( err => {
             console.log("Error", err);
         });
     }
+    
+    handleSuccess = ({ user}) => {
+        this.props.dispatch(userUpdate(user));
+        this.props.history.push(`/users/${user._id}`);
+    }
+
     render() {
         return (
             <div className="login-page">
@@ -64,4 +69,4 @@ class LoginPage extends React.PureComponent {
     }
 }
 
-export default LoginPage;
+export default connect()(LoginPage);

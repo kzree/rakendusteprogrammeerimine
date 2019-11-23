@@ -3,9 +3,11 @@
 export const USER_SUCCESS = "USER_SUCCESS";
 export const USER_REQUEST = "USER_REQUEST";
 export const USER_FAILURE = "USER_FAILURE";
+export const USER_UPDATE = "USER_UPDATE";
 
 export const ITEM_ADDED = "ITEM_ADDED";
 export const ITEM_REMOVED = "ITEM_REMOVED";
+export const TOKEN_UPDATE = "TOKEN_UPDATE";
 
 export const ITEMS_SUCCESS = "ITEMS_SUCCESS";
 export const ITEMS_REQUEST = "ITEMS_REQUEST";
@@ -53,3 +55,13 @@ export const itemsFailure = (items) => ({
     type: ITEMS_FAILURE,
     payload: items,
 });
+
+export const userUpdate = (user) => ({
+    type: USER_UPDATE,
+    payload: user,
+});
+
+export const tokenUpdate = (token) => ({
+    type: TOKEN_UPDATE,
+    payload: token
+})
