@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./form.css";
 
 class SignupPage extends React.PureComponent {
@@ -19,7 +20,6 @@ class SignupPage extends React.PureComponent {
     }
 
     handleChange(event) {
-        console.log("handle change", event.target.name, event.target.value);
         this.setState({
             [event.target.name]: event.target.value,
         });
@@ -37,11 +37,11 @@ class SignupPage extends React.PureComponent {
         })
         .then( res => res.json())
         .then( data=>{
-            console.log("data", data);
+            toast.success("Registered successfully", {position: "bottom-right"});
             this.props.history.push("/login");
         })
         .catch ( err => {
-            console.log("Error", err);
+            toast.error("Error registering!", {position: "bottom-right"});
         });  
     }
     render(){

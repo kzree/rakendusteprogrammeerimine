@@ -5,6 +5,7 @@ import "./form.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userUpdate } from "../store/actions";
+import { toast } from "react-toastify";
 
 class LoginPage extends React.PureComponent {
 
@@ -25,7 +26,6 @@ class LoginPage extends React.PureComponent {
     }
 
     handleChange(event) {
-        console.log("handle change", event.target.name, event.target.value);
         this.setState({
             [event.target.name]: event.target.value,
         });
@@ -44,12 +44,13 @@ class LoginPage extends React.PureComponent {
         .then( res=> res.json())
         .then(this.handleSuccess)
         .catch( err => {
-            console.log("Error", err);
+            toast.error("Error logging in", {position: "bottom-right"});
         });
     }
     
     handleSuccess = ({ user}) => {
         this.props.dispatch(userUpdate(user));
+        toast.success("You have logged in!", {position: "bottom-right"});
         this.props.history.push(`/users/${user._id}`);
     }
 

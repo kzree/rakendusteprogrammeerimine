@@ -12,6 +12,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import configureStore from "./store/configureStore.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const {store, persistor} = configureStore();
 
@@ -24,6 +26,7 @@ class App extends React.Component {
 				<PersistGate loading = {null} persistor={persistor}>
 					<BrowserRouter>
 						<Route path={"/"} component={Header} />
+						<ToastContainer className="toast-container" />
 						<Switch>
 
 							<Route path="/" exact component={HomePage} />

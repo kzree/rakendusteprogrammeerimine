@@ -6,6 +6,7 @@ import { FaRegTrashAlt, FaAngleRight } from "react-icons/fa";
 import {connect} from "react-redux";
 import "./cart.css";
 import { removeItem } from "../store/actions.js";
+import {toast} from "react-toastify";
 
 class CartPage extends React.PureComponent {
     static propTypes = {
@@ -22,6 +23,7 @@ class CartPage extends React.PureComponent {
 
     handleTrash = (_id) => {
         this.props.dispatch(removeItem(_id))
+        toast.error("Item removed from cart", {position: "bottom-right"});
     }
 
     render() {
