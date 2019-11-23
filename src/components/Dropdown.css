@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .dropbox{
     position: relative;
     display: block;
@@ -10,6 +12,7 @@
 }
 
 select{
+    font-family: "Roboto", sans-serif;
     border: none;
     outline: none;
     background: transparent;
