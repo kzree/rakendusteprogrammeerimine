@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .body{
     margin: 0;
     padding: 0;
@@ -27,7 +29,7 @@ button{
     background-color: blueviolet;
     color: white;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     cursor: pointer;
 }
 
@@ -63,7 +65,7 @@ button{
 .item-info{
     justify-content: space-between;
     background-color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     height: 100px;
     color: blueviolet;
 }
@@ -108,7 +110,7 @@ button{
     width: 900px;
     margin: auto;
     height: 60px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     align-items: center;
     display: flex;
     margin-bottom: 5px;
@@ -120,7 +122,7 @@ button{
     align-items: center;
     margin: auto;
     margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
     color: blueviolet;
 }
@@ -147,7 +149,7 @@ button{
     width: 900px;
     margin: auto;
     height: auto;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     align-items: center;
     animation: fadein 0.5s;
 }
