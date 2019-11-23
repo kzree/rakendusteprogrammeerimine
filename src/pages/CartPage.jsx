@@ -34,8 +34,10 @@ class CartPage extends React.PureComponent {
                 <div className={"box cart_summary"}>
                     <table>
                         <tbody>
-                            <tr><td>Items in cart:</td><td>4</td></tr>
-                            <tr><td>Price:</td><td>1520 €</td></tr>
+                            <div className="cart-summary-info">
+                                <tr><td>Items in cart:</td><td>4</td></tr>
+                                <tr><td>Price:</td><td>1520 €</td></tr>
+                            </div>
                             <tr>
                                 <td></td>
                                 <td><div className={"submit-button"}>Order<FaAngleRight /></div></td>
