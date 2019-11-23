@@ -55,7 +55,7 @@ export const removeItemFromCart = ({userId, itemId, token}) => {
 };
 
 export const login = ({email, password}) => {
-    return fetch(`${basePath}/auth/login`, {
+    return fetch(`${basePath}/auth/signin`, {
         method: "POST",
         headers: {
             "content-type": "application/json"
@@ -68,13 +68,13 @@ export const login = ({email, password}) => {
     });
 };
 
-export const signup = ({email, password}) => {
+export const signup = ({email, password, firstname, lastname}) => {
     return fetch(`${basePath}/auth/signup`, {
         method: "POST",
         headers: {
             "content-type": "application/json"
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({email, password, firstname, lastname})
     })
     .then(res => {
         if(!res.ok) throw "signup failed";

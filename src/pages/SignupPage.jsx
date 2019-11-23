@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./form.css";
+import * as services from "../services.js";
 
 class SignupPage extends React.PureComponent {
     constructor(props) {
@@ -27,18 +28,7 @@ class SignupPage extends React.PureComponent {
 
     handleSubmit(event){ 
         event.preventDefault();
-        fetch("/api/v1/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(this.state),
-        })
-        .then( res => {
-            if(!res.ok) throw "Signup failed";
-            return res.json(); 
-        })
+        services.signup(this.state)
         .then( () =>{
             toast.success("Registered successfully", {position: "bottom-right"});
             this.props.history.push("/login");

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import * as services from "../services.js";
 
 export const USER_SUCCESS = "USER_SUCCESS";
 export const USER_REQUEST = "USER_REQUEST";
@@ -14,14 +15,9 @@ export const ITEMS_REQUEST = "ITEMS_REQUEST";
 export const ITEMS_FAILURE = "ITEMS_FAILURE";
 
 export const getItems = () => (dispatch, getState) => {
-
     if(getState().items.length > 0) return null;
-
     dispatch(itemsRequest());
-    return fetch("/api/v1/items")
-        .then(res => {
-            return res.json();
-        })
+    return services.getItems()
         .then(items => {
             dispatch(itemsSuccess(items));
         })
