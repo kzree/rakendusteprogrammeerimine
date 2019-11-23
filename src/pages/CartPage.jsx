@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { FaRegTrashAlt, FaAngleRight } from "react-icons/fa";
 import {connect} from "react-redux";
 import "./cart.css";
-import { removeItem } from "../store/store.js";
+import { removeItem } from "../store/actions.js";
 
 class CartPage extends React.PureComponent {
     static propTypes = {

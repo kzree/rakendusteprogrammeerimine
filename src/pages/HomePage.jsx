@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ItemProps} from "./CartPage.jsx";
-import {getItems} from "../store/store.js";
+import {getItems} from "../store/actions.js";
 
 class HomePage extends React.PureComponent {
 

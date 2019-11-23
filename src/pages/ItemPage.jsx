@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import "../style/ItemPage.css";
-import { addItem } from "../store/store";
+import { addItem } from "../store/actions";
 
 class ItemPage extends React.PureComponent {
     static propTypes = {

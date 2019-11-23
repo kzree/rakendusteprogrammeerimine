@@ -9,8 +9,11 @@ import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import store from "./store/store.js";
+import configureStore from "./store/configureStore.js";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+const {store, persistor} = configureStore();
 
 const defaultAuth = {
 	token: null,
@@ -35,29 +38,31 @@ class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<AuthContext.Provider value={this.state}>
-					<BrowserRouter>
-						<Route path={"/"} component={Header} />
-						<Switch>
+				<PersistGate loading = {null} persistor={persistor}>
+					<AuthContext.Provider value={this.state}>
+						<BrowserRouter>
+							<Route path={"/"} component={Header} />
+							<Switch>
 
-							<Route path="/" exact component={HomePage} />
-							<Route
-								path="/login"
-								exact
-								render={(props) =>
-									<LoginPage
-										{...props}
-										onLogin={this.handleLogin}
-									/>}
-							/>
-							<Route path="/signup" exact component={SignupPage} />
-							<Route path="/users/:userId" exact component={UserPage} />
-							<Route path="/items/:itemId" exact component={ItemPage} />
-							<Route path="/cart" exact component={CartPage} />
-							<Route component={NotFound} />
-						</Switch>
-					</BrowserRouter>
-				</AuthContext.Provider>
+								<Route path="/" exact component={HomePage} />
+								<Route
+									path="/login"
+									exact
+									render={(props) =>
+										<LoginPage
+											{...props}
+											onLogin={this.handleLogin}
+										/>}
+								/>
+								<Route path="/signup" exact component={SignupPage} />
+								<Route path="/users/:userId" exact component={UserPage} />
+								<Route path="/items/:itemId" exact component={ItemPage} />
+								<Route path="/cart" exact component={CartPage} />
+								<Route component={NotFound} />
+							</Switch>
+						</BrowserRouter>
+					</AuthContext.Provider>
+				</PersistGate>
 			</Provider>
 		);
 	}
