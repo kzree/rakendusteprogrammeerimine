@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .header{
     margin-bottom: 15px;
     background: blueviolet;
@@ -55,3 +57,14 @@
     color: white;
 }
 
+.header-badge {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    position: absolute;
+    padding: 3px 8px;
+    background: red;
+    bottom: 18px;
+    right: 54px;
+    color: white;
+    border-radius: 100%;
+}

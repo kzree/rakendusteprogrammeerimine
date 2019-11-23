@@ -95,5 +95,6 @@ export const ItemProps = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
 };
+
 Row.propTypes = ItemProps;
 export default CartPage;
