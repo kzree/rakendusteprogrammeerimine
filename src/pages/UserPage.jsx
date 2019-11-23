@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 //import authConsumer from "../components/authConsumer.jsx";
-//import protectedRedirect from "../components/protectedRedirect.jsx";
+import protectedRedirect from "../components/protectedRedirect.jsx";
 import "../style/UserPage.css";
 import { UserPropTypes } from "../store/reducer";
 import {connect} from "react-redux";
@@ -45,5 +45,5 @@ const mapStateToProps = (store) => {
     };
 };
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(protectedRedirect(UserPage));
 //export default authConsumer(protectedRedirect(UserPage));
