@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./form.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { userUpdate } from "../store/actions";
+import { userUpdate, tokenUpdate } from "../store/actions";
 import { toast } from "react-toastify";
 import * as services from "../services.js";
 
@@ -42,8 +42,9 @@ class LoginPage extends React.PureComponent {
         });
     }
     
-    handleSuccess = ({ user}) => {
+    handleSuccess = ({token, user}) => {
         this.props.dispatch(userUpdate(user));
+        this.props.dispatch(tokenUpdate(token));
         toast.success("You have logged in!", {position: "bottom-right"});
         this.props.history.push(`/users/${user._id}`);
     }

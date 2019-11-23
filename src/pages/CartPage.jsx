@@ -8,15 +8,35 @@ import "./cart.css";
 import { removeItem } from "../store/actions.js";
 import {toast} from "react-toastify";
 import * as selectors from "../store/selectors.js";
+import * as services from "../services.js";
 
 class CartPage extends React.PureComponent {
     static propTypes = {
-        cart: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired,
+        cartItemIds: PropTypes.arrayOf(PropTypes.string).isRequired,
         dispatch: PropTypes.func.isRequired,
     }
 
+    state = {
+        cartItems: [],
+    };
+
+    componentDidMount() {
+        const promises = this.props.cartItemIds.map( itemId => 
+            services.getItem({itemId})
+        );
+        Promise.all(promises).then( items => {
+            this.setState({
+                cartItems: items,
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            toast.error("Failed fetching items");
+        });
+    }
+
     calcNumbers = () => {
-        const sum = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
+        const sum = Math.round(this.state.cartItems.reduce((acc, item) => acc + item.price, 0));
         return {
             sum
         }
@@ -34,14 +54,14 @@ class CartPage extends React.PureComponent {
                 <div className={"box cart"}>
                     <Table
                         onTrash={this.handleTrash}
-                        rows={this.props.cart}
+                        rows={this.state.cartItems}
                     />
                 </div>
                 <div className={"box cart_summary"}>
                     <table>
                         <tbody>
                             <div className="cart-summary-info">
-                                <tr><td>Items in cart:</td><td>{this.props.cart.length}</td></tr>
+                                <tr><td>Items in cart:</td><td>{this.state.cartItems.length}</td></tr>
                                 <tr><td>Price:</td><td>{sum}€</td></tr>
                             </div>
                             <tr>
@@ -110,7 +130,7 @@ Row.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        cart: selectors.getCart(store),
+        cartItemIds: selectors.getCart(store),
     };
 };
 

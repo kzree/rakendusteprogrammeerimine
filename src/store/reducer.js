@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import {
     ITEMS_SUCCESS, ITEM_REMOVED, ITEM_ADDED, USER_SUCCESS, USER_UPDATE, TOKEN_UPDATE,
@@ -6,7 +7,6 @@ import {
 const initialState = {
     token: null,
 	user: null,
-	cart: [],
 	items: []
 }
 
@@ -15,7 +15,8 @@ export const UserPropTypes = {
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired
+    createdAt: PropTypes.string.isRequired,
+    cart: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 
@@ -47,20 +48,27 @@ export const reducer = (state = initialState, action) => {
 		case ITEM_ADDED: {
 			return {
 				...state,
-				cart: state.cart.concat([action.payload])
+				user: addItemToUserCart(state.user, action.payload)
 			};
 		}
-		case ITEM_REMOVED: {
+/* 		case ITEM_REMOVED: {
 			return {
 				...state,
 				cart: removeItemById(state.cart, action.payload)
 			}
-		}
+		} */
 		default:{
 			return state;
 		}
 	}
 };
+
+const addItemToUserCart = (user, itemId) => {
+    return {
+        ...user,
+        cart: user.cart.concat([itemId])
+    }
+}
 
 const removeItemById = (items, _id) => {
     const index = items.findIndex(item => item._id === _id);

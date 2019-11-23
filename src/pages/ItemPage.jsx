@@ -37,7 +37,6 @@ class ItemPage extends React.PureComponent {
 
     handleBuy(){
         this.props.dispatch(addItem(this.state));
-        toast.success("Item added to cart", {position: "bottom-right"});
     }
 
     render() {
