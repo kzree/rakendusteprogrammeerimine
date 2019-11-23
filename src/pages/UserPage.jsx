@@ -6,6 +6,7 @@ import "../style/UserPage.css";
 import { UserPropTypes } from "../store/reducer";
 import {connect} from "react-redux";
 import { userUpdate, tokenUpdate } from "../store/actions.js";
+import * as selectors from "../store/selectors.js";
 
 class UserPage extends React.PureComponent {
 
@@ -41,7 +42,7 @@ class UserPage extends React.PureComponent {
 
 const mapStateToProps = (store) => {
     return {
-        user: store.user,
+        user: selectors.getUser(store),
     };
 };
 
