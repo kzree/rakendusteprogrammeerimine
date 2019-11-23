@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Item = require("./item.model.js");
 
 //Delete item
-router.delete("/items/:itemId", (req, res) => {
+router.delete("/:itemId", (req, res) => {
     Item.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err) =>{
         if(err) {
             return res.send(500);
@@ -16,7 +16,7 @@ router.delete("/items/:itemId", (req, res) => {
 })
 
 //New item
-router.post("/items", (req, res) => {
+router.post("/", (req, res) => {
     const props = {
         imgSrc: "https://www.euronics.ee/UserFiles/Products/Images/227787-312157-mediumsmall.png",
         title: "\nSülearvuti Apple MacBook Air 2019 (256 GB) SWE\n",
@@ -36,7 +36,7 @@ router.post("/items", (req, res) => {
     })
 })
 
-router.get("/items/:itemId", (req, res)=>{
+router.get("/:itemId", (req, res)=>{
     Item.findById(req.params.itemId, function (err, item) {
         if(err){
             console.log("Error: ", err);
@@ -47,7 +47,7 @@ router.get("/items/:itemId", (req, res)=>{
     })
 });
 
-router.get("/items", (req,res)=>{
+router.get("/", (req,res)=>{
     Item.find({}, function(err, items) {
         if(err){
             console.log("Error: ", err);

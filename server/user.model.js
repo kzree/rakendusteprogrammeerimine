@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
     hash: {type: String, required: true},
     firstname: { type: String, required: true},
     lastname: { type: String, required: true},
-    created_at: { type: Date, default: Date.now}
+    created_at: { type: Date, default: Date.now},
+    cart: { type: [String], default: [] }
 })
 
 userSchema.statics.signup = function({email, password, firstname, lastname}){
@@ -36,6 +37,7 @@ userSchema.statics.signin = function({email, password}){
                     firstname: userDoc.firstname,
                     lastname: userDoc.lastname,
                     _id: userDoc._id,
+                    cart: userDoc.cart
                });
            });
        }); 
