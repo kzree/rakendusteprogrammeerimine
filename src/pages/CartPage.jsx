@@ -21,19 +21,31 @@ class CartPage extends React.PureComponent {
     };
 
     componentDidMount() {
-        const promises = this.props.cartItemIds.map( itemId => 
+        this.fetchItems();
+    }
+
+    componentDidUpdate(prevProps) {
+        const prevPropIds = prevProps.cartItemIds.join("");
+        const currentIds = this.props.cartItemIds.join("");
+        if(prevPropIds !== currentIds) {
+            this.fetchItems();
+        }
+    }
+
+    fetchItems = () => {
+        const promises = this.props.cartItemIds.map(itemId => 
             services.getItem({itemId})
         );
-        Promise.all(promises).then( items => {
+        Promise.all(promises).then(items => {
             this.setState({
                 cartItems: items,
             });
         })
         .catch(err => {
             console.error(err);
-            toast.error("Failed fetching items");
+            toast.error("Failed fetching items", {position: "bottom-right"});
         });
-    }
+    };
 
     calcNumbers = () => {
         const sum = Math.round(this.state.cartItems.reduce((acc, item) => acc + item.price, 0));
@@ -44,7 +56,6 @@ class CartPage extends React.PureComponent {
 
     handleTrash = (_id) => {
         this.props.dispatch(removeItem(_id))
-        toast.error("Item removed from cart", {position: "bottom-right"});
     }
 
     render() {

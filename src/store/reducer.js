@@ -6,8 +6,8 @@ import {
 
 const initialState = {
     token: null,
-	user: null,
-	items: []
+    user: null,
+    items: []
 }
 
 export const UserPropTypes = {
@@ -22,7 +22,7 @@ export const UserPropTypes = {
 
 
 export const reducer = (state = initialState, action) => {
-	switch(action.type){
+    switch (action.type) {
         case TOKEN_UPDATE:
             return {
                 ...state,
@@ -33,34 +33,34 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
             }
-		case USER_SUCCESS: {
-			return {
-				...state,
-				...action.payload,
-			}
-		}
-		case ITEMS_SUCCESS: {
+        case USER_SUCCESS: {
+            return {
+                ...state,
+                ...action.payload,
+            }
+        }
+        case ITEMS_SUCCESS: {
             return {
                 ...state,
                 items: action.payload,
             };
         }
-		case ITEM_ADDED: {
-			return {
-				...state,
-				user: addItemToUserCart(state.user, action.payload)
-			};
-		}
-/* 		case ITEM_REMOVED: {
-			return {
-				...state,
-				cart: removeItemById(state.cart, action.payload)
-			}
-		} */
-		default:{
-			return state;
-		}
-	}
+        case ITEM_ADDED: {
+            return {
+                ...state,
+                user: addItemToUserCart(state.user, action.payload)
+            };
+        }
+        case ITEM_REMOVED: {
+            return {
+                ...state,
+                user: removeItemFromCart(state.user, action.payload)
+            };
+        }
+        default: {
+            return state;
+        }
+    }
 };
 
 const addItemToUserCart = (user, itemId) => {
@@ -70,9 +70,20 @@ const addItemToUserCart = (user, itemId) => {
     }
 }
 
+const removeItemFromCart = (user, itemId) => {
+    const foundItemIndex = user.cart.findIndex(cartId => cartId === itemId);
+    if (foundItemIndex === -1) return user;
+    const cartCopy = user.cart.slice();
+    cartCopy.splice(foundItemIndex, 1);
+    return {
+        ...user,
+        cart: cartCopy
+    };
+};
+
 const removeItemById = (items, _id) => {
     const index = items.findIndex(item => item._id === _id);
-    if(index === -1) return items;
+    if (index === -1) return items;
     const copy = items.slice();
     copy.splice(index, 1);
     return copy;

@@ -44,14 +44,27 @@ export const addItem = (item) => (dispatch, getState) => {
         });
     })
     .catch(err => {
-        toast.error("Error while adding to cart!")
+        toast.error("Error while adding to cart!", {position: "bottom-right"})
     });
 };
 
-export const removeItem = (_id) => ({
-    type: ITEM_REMOVED,
-    payload: _id,
-});
+export const removeItem = (itemId) => (dispatch, getState) => {
+    const store = getState();
+    const token = selectors.getToken(store);
+    const userId = selectors.getUser(store)._id;
+    services.removeItemFromCart({itemId, token, userId})
+    .then(() => {
+        toast.success("Item removed", {position: "bottom-right"});
+        dispatch({
+            type: ITEM_REMOVED,
+            payload: itemId,
+        });
+    })
+    .catch(err => {
+        console.error(err);
+        toast.error("Error while removing item", {position: "bottom-right"});
+    });
+};
 
 export const itemsSuccess = (items) => ({
     type: ITEMS_SUCCESS,
