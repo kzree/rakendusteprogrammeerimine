@@ -64,8 +64,14 @@ router.delete("/purge", (req, res)=>{
         if(err) return handleError(err,res);
         console.log(docs);
         res.send(204)
-    })
+    });
+});
+
+router.post("/:userId/checkout", authMiddleware, (req, res) => {
+    console.log(req.body);
+    res.send(200);
 })
+
 function handleError(err, res){
     console.log(err);
     res.send(500);

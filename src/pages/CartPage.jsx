@@ -9,6 +9,8 @@ import { removeItem } from "../store/actions.js";
 import {toast} from "react-toastify";
 import * as selectors from "../store/selectors.js";
 import * as services from "../services.js";
+import Modal from "../components/Modal.jsx";
+import Stripe from "../components/Stripe.jsx";
 
 class CartPage extends React.PureComponent {
     static propTypes = {
@@ -18,6 +20,7 @@ class CartPage extends React.PureComponent {
 
     state = {
         cartItems: [],
+        isModalOpen: false
     };
 
     componentDidMount() {
@@ -57,32 +60,44 @@ class CartPage extends React.PureComponent {
     handleTrash = (_id) => {
         this.props.dispatch(removeItem(_id))
     }
-
+    
+    handleModal = () => {
+        console.log("handle modal");
+        this.setState({
+            isModalOpen: !this.state.isModalOpen,
+        })
+    }
     render() {
         const {sum} = this.calcNumbers();
         return (
-            <div className={"cart-wrapper"}>
-                <div className={"box cart"}>
-                    <Table
-                        onTrash={this.handleTrash}
-                        rows={this.state.cartItems}
-                    />
+            <>
+                <Modal open={this.state.isModalOpen} onClose={this.handleModal}>
+                    <Stripe sum = {sum}/>
+                </Modal>
+
+                <div className={"cart-wrapper"}>
+                    <div className={"box cart"}>
+                        <Table
+                            onTrash={this.handleTrash}
+                            rows={this.state.cartItems}
+                        />
+                    </div>
+                    <div className={"box cart_summary"}>
+                        <table>
+                            <tbody>
+                                <div className="cart-summary-info">
+                                    <tr><td>Items in cart:</td><td>{this.state.cartItems.length}</td></tr>
+                                    <tr><td>Price:</td><td>{sum}€</td></tr>
+                                </div>
+                                <tr>
+                                    <td></td>
+                                    <td><div className={"submit-button"} onClick={this.handleModal}>Order<FaAngleRight /></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div className={"box cart_summary"}>
-                    <table>
-                        <tbody>
-                            <div className="cart-summary-info">
-                                <tr><td>Items in cart:</td><td>{this.state.cartItems.length}</td></tr>
-                                <tr><td>Price:</td><td>{sum}€</td></tr>
-                            </div>
-                            <tr>
-                                <td></td>
-                                <td><div className={"submit-button"}>Order<FaAngleRight /></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </>
         );
     }
 }

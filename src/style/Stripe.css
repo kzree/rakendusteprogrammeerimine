@@ -1,0 +1,13 @@
+.stripe-form {
+    margin-top: 50px;
+
+}
+
+.stripe-pay {
+    font-size: 18px;
+    margin-top: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: auto;
+}
