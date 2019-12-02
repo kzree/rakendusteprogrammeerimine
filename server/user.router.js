@@ -67,8 +67,10 @@ router.delete("/purge", (req, res)=>{
     });
 });
 
-router.post("/:userId/checkout", authMiddleware, (req, res) => {
-    console.log(req.body);
+router.post("/:userId/checkout", authMiddleware, async (req, res) => {
+    const {error, amount} = await req.user.getCartAmount();
+
+    console.log(error, amount);
     res.send(200);
 })
 

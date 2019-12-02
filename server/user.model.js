@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const Item = require("./item.model.js");
 
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true},
@@ -43,6 +44,14 @@ userSchema.statics.signin = function({email, password}){
        }); 
     });    
 };
+
+userSchema.methods.getCartAmount = async function() {
+    const items = await Item.getItems(this.cart);
+    console.log(items);
+
+    const amount = items.reduce( (acc, item) => acc + item.price, 0);
+    return {error: null, amount};
+}
 
 const User = mongoose.model("User", userSchema);
 
