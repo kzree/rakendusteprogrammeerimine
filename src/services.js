@@ -93,6 +93,5 @@ export const checkout = ({stripeToken, userId, token}) => {
     })
     .then(res => {
         if(!res.ok) throw "checkout failed";
-        return res.json();
     });
 }; 

@@ -67,12 +67,17 @@ class CartPage extends React.PureComponent {
             isModalOpen: !this.state.isModalOpen,
         })
     }
+
+    handleSubmit = () => {
+        this.handleModal();
+    }
+
     render() {
         const {sum} = this.calcNumbers();
         return (
             <>
                 <Modal open={this.state.isModalOpen} onClose={this.handleModal}>
-                    <Stripe sum = {sum}/>
+                    <Stripe sum = {sum} onSubmit = {this.handleSubmit}/>
                 </Modal>
 
                 <div className={"cart-wrapper"}>
